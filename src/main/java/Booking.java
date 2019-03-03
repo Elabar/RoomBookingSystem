@@ -6,7 +6,7 @@ public class Booking {
 	}
 	
 	public void setBooking(User user,Room room) {
-		if(user.getMember_type() == "VIP") {
+		if(user.getMember_type().equals("VIP")) {
 			//reward??
 			if(room.checkRoom("VIP")) {
 				//assign to VIP room
@@ -23,7 +23,7 @@ public class Booking {
 			}
 		}
 		
-		if(user.getMember_type() == "normal") {
+		if(user.getMember_type().equals("normal")) {
 			if(room.checkRoom("deluxe")) {
 				//assign to deluxe room
 				//reward
@@ -43,7 +43,7 @@ public class Booking {
 			}
 		}
 		
-		if(user.getMember_type() == "non") {
+		if(user.getMember_type().equals("non")) {
 			if(room.checkRoom("standard")) {
 				//assign to standard room
 			}else {
