@@ -8,11 +8,6 @@ public class User {
 		return member_type;
 	}
 	
-	public User(String name,String member_type) {
-		this.name = name;
-		this.member_type = member_type;
-	}
-
 	public boolean getExcl_reward() {
 		return excl_reward;
 	}
@@ -21,6 +16,12 @@ public class User {
 		this.excl_reward = excl_reward;
 	}
 
+	public User(String name,String member_type) {
+		this.name = name;
+		this.member_type = member_type;
+	}
+
+	
 
 	
 	
