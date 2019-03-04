@@ -1,9 +1,18 @@
-dependencies {
-    testImplementation("junit:junit:5")
+apply plugin: 'java'
+ 
+repositories {
+    mavenCentral()
 }
-
-tasks.test {
-    useJUnit()
-
-    maxHeapSize = "1G"
+ 
+dependencies {
+    testCompile(
+            'org.junit.jupiter:junit-jupiter-api:5.4.0'
+    )
+    testRuntime(
+            'org.junit.jupiter:junit-jupiter-engine:5.4.0',
+    )
+}
+ 
+test {
+    useJUnitPlatform()
 }
