@@ -1,0 +1,9 @@
+dependencies {
+    testImplementation("junit:junit:5")
+}
+
+tasks.test {
+    useJUnit()
+
+    maxHeapSize = "1G"
+}
