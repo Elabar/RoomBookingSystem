@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class User {
 	private String name;
@@ -5,6 +6,8 @@ public class User {
 	private boolean excl_reward;
 	private int maxNumberOfBookedRoom;
 	private int numberOfBookedRoom;
+	private ArrayList<Booking> bookings;
+	private ArrayList<WaitingList> waitingLists;
 	
 	public String getMember_type() {
 		return member_type;

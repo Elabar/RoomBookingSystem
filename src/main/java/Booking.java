@@ -2,7 +2,8 @@
 import java.util.ArrayList;
 
 public class Booking {
-	private ArrayList<Room> aRoom;
+	private ArrayList<Room> rooms;
+	private User aUser;
 	
 	public void setBooking(User user,Room room) {
 		if(user.getMaxNumberOfBookedRoom() < user.getNumberOfBookedRoom()) {

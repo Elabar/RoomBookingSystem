@@ -1,0 +1,32 @@
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
+import org.junit.runner.RunWith;
+import static org.junit.Assert.*;
+import org.junit.Test;
+
+@RunWith(JUnitParamsRunner.class)
+public class TestUser {
+	
+	private Object[] users() {
+		User user1 = new User("Lee","VIP");
+		User user2 = new User("Angeline","normal");
+		User user3 = new User("Hew Yan","non");
+		User user4 = new User("Wai Kit","VIP");
+		User user5 = new User("Shu Jie","normal");
+		User user6 = new User("Thoong","non");
+		return new Object[] {
+			new Object[] {user1,3},
+			new Object[] {user2,2},
+			new Object[] {user3,1},
+			new Object[] {user4,3},
+			new Object[] {user5,2},
+			new Object[] {user6,1}
+		};
+	}
+	
+	@Test
+	@Parameters(method = "users")
+	public void testUserConstructor(User user,int maxRoom) {
+		assertEquals(user.getMaxNumberOfBookedRoom(),maxRoom);
+	}
+}
