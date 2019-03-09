@@ -4,6 +4,6 @@
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" output="TestClasses" path="src/test/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="lib" path="C:/Users/LeeHM/eclipse-workspace/BookingSystem/JUnitParams-1.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/LeeHM/eclipse-workspace/BookingSystem/libs/JUnitParams-1.0.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

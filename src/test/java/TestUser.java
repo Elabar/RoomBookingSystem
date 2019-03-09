@@ -29,4 +29,43 @@ public class TestUser {
 	public void testUserConstructor(User user,int maxRoom) {
 		assertEquals(user.getMaxNumberOfBookedRoom(),maxRoom);
 	}
+	
+	private Object[] dataForDecrease(){
+		User user1 = new User("Lee","VIP");
+		User user2 = new User("Angeline","normal");
+		User user3 = new User("Hew Yan","non");
+		return new Object[] {
+				new Object[] {user1,3,-3},
+				new Object[] {user2,2,-2},
+				new Object[] {user3,1,-1},
+		};
+	}
+	@Test
+	@Parameters(method = "dataForDecrease")
+	public void testDecreseNumberOfBookedRoom(User user,int numberOfLoop,int numberOfBookedRoom) {
+		for(int i = 0;i < numberOfLoop;i++) {
+			user.decreaseNumberOfBookedRoom();
+		}
+		assertEquals(user.getNumberOfBookedRoom(),numberOfBookedRoom);
+	}
+	
+	private Object[] dataForIncrease(){
+		User user1 = new User("Lee","VIP");
+		User user2 = new User("Angeline","normal");
+		User user3 = new User("Hew Yan","non");
+		return new Object[] {
+				new Object[] {user1,3,3},
+				new Object[] {user2,2,2},
+				new Object[] {user3,1,1},
+		};
+	}
+	
+	@Test
+	@Parameters(method = "dataForIncrease")
+	public void testAddNumberOfBookedRoom(User user,int numberOfLoop,int numberOfBookedRoom) {
+		for(int i = 0;i < numberOfLoop;i++) {
+			user.addNumberOfBookedRoom();
+		}
+		assertEquals(user.getNumberOfBookedRoom(),numberOfBookedRoom);
+	}
 }
