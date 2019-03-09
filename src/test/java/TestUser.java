@@ -68,4 +68,27 @@ public class TestUser {
 		}
 		assertEquals(user.getNumberOfBookedRoom(),numberOfBookedRoom);
 	}
+	
+	private Object[] dataForExclReward(){
+		User user1 = new User("Lee","VIP");
+		User user2 = new User("Angeline","normal");
+		User user3 = new User("Hew Yan","non");
+		return new Object[] {
+				new Object[] {user1,true},
+				new Object[] {user2,false},
+				new Object[] {user3,true},
+		};
+	}
+	
+	@Test
+	@Parameters(method = "dataForExclReward")
+	public void testExclReward(User user,boolean excl_reward) {
+		
+		user.setExcl_reward(excl_reward);
+		if(excl_reward) {
+			assertTrue(user.getExcl_reward());
+		}else {
+			assertFalse(user.getExcl_reward());
+		}
+	}
 }
