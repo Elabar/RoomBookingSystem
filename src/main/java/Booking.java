@@ -1,58 +1,67 @@
 
+import java.util.ArrayList;
+
 public class Booking {
-	
-	public Booking() {
-		
-	}
+	private ArrayList<Room> aRoom;
 	
 	public void setBooking(User user,Room room) {
-		if(user.getMember_type().equals("VIP")) {
-			//reward??
-			if(room.checkRoom("VIP")) {
-				//assign to VIP room
-				
-			}else if(room.checkRoom("deluxe")) {
-				//assign to deluxe room
-				
-			}else if(room.checkRoom("standard")) {
-				//assign to standard room
-				
-			}else {
-				//assign to waiting list
-				
-			}
-		}
-		
-		if(user.getMember_type().equals("normal")) {
-			if(room.checkRoom("deluxe")) {
-				//assign to deluxe room
-				//reward
-			}else {
-				if(user.getExcl_reward()) {
-					if(room.checkRoom("VIP")) {
-						//assign to vip room
-						user.setExcl_reward(false);
-					}
+		if(user.getMaxNumberOfBookedRoom() < user.getNumberOfBookedRoom()) {
+			if("VIP".equals(user.getMember_type())) {
+				//reward??
+				if(room.checkRoom("VIP")) {
+					//assign to VIP room
+					user.addNumberOfBookedRoom();
+					
+				}else if(room.checkRoom("deluxe")) {
+					//assign to deluxe room
+					user.addNumberOfBookedRoom();
+					
+				}else if(room.checkRoom("standard")) {
+					//assign to standard room
+					user.addNumberOfBookedRoom();
+					
 				}else {
-					if(room.checkRoom("standard")){
-						//assign to normal room
+					//assign to waiting list
+				}
+			}else if("normal".equals(user.getMember_type())) {
+				if(room.checkRoom("deluxe")) {
+					//assign to deluxe room
+					//reward
+					user.addNumberOfBookedRoom();
+				}else {
+					if(user.getExcl_reward()) {
+						if(room.checkRoom("VIP")) {
+							//assign to VIP room
+							user.addNumberOfBookedRoom();
+							user.setExcl_reward(false);
+						}
 					}else {
-						//assign to waiting list
+						if(room.checkRoom("standard")){
+							//assign to normal room
+							user.addNumberOfBookedRoom();
+						}else {
+							//assign to waiting list
+						}
 					}
 				}
-			}
-		}
-		
-		if(user.getMember_type().equals("non")) {
-			if(room.checkRoom("standard")) {
-				//assign to standard room
+			}else if("non".equals(user.getMember_type())) {
+				if(room.checkRoom("standard")) {
+					//assign to standard room
+					user.addNumberOfBookedRoom();
+				}else {
+					//assign to waiting list
+				}
 			}else {
-				//assign to waiting list
+				System.out.println("Reached maximum room.");
 			}
 		}
 	}
 	
-	public void cancelBooking(User user) {
-		
+	public void cancelBooking(User user,Room room) {
+		if(user.getNumberOfBookedRoom() > 0) {
+			user.decreaseNumberOfBookedRoom();
+		}else {
+			System.out.println("No booked room.");
+		}
 	}
 }
