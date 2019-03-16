@@ -19,7 +19,10 @@ dependencies {
             'org.junit.jupiter:junit-jupiter-engine:5.4.0',
             'org.junit.vintage:junit-vintage-engine:5.4.0'
     )
-    compile files('libs/JUnitParams-1.0.2.jar')
+    compile files(
+            'libs/JUnitParams-1.0.2.jar',
+            'libs/mockito-all-1.9.5.jar'
+    )
 }
  
 test {
