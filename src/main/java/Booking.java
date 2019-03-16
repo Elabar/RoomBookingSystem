@@ -5,8 +5,15 @@ public class Booking {
 	private ArrayList<Room> rooms;
 	private User aUser;
 	
+	//testing purpose constructor
+	public Booking(Room room,User user) {
+		rooms = new ArrayList<Room>();
+		rooms.add(room);
+		this.aUser = user;
+	}
+	
 	public void setBooking(User user,Room room) {
-		if(user.getMaxNumberOfBookedRoom() < user.getNumberOfBookedRoom()) {
+		if(user.getMaxNumberOfBookedRoom() > user.getNumberOfBookedRoom()) {
 			if("VIP".equals(user.getMember_type())) {
 				//reward??
 				if(room.checkRoom("VIP")) {
