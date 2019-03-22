@@ -4,7 +4,7 @@
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" output="TestClasses" path="src/test/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="lib" path="C:/Users/LeeHM/eclipse-workspace/BookingSystem/libs/JUnitParams-1.0.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LeeHM/eclipse-workspace/BookingSystem/libs/mockito-all-1.9.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fulia/eclipse-workspace/RoomBookingSystem/libs/JUnitParams-1.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fulia/eclipse-workspace/RoomBookingSystem/libs/mockito-all-1.9.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

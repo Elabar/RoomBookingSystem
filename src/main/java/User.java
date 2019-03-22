@@ -51,4 +51,16 @@ public class User {
 	public void decreaseNumberOfBookedRoom() {
 		numberOfBookedRoom--;
 	}
+	
+	public boolean canBook() {
+		if(numberOfBookedRoom < maxNumberOfBookedRoom) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	public void addWaitingList() {
+		//to be implement
+	}
 }

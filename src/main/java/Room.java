@@ -8,9 +8,11 @@ public class Room {
 		
 	}
 	
-	public boolean checkRoom(String room_type) {
-		//not implemented
-		//no idea what i am doing alrd.... LOL
+	public boolean checkRoom(String roomType) {
 		return true;
+	}
+	
+	public void assignRoom(String roomType) {
+		
 	}
 }

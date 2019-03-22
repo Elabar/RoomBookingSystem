@@ -2,66 +2,68 @@
 import java.util.ArrayList;
 
 public class Booking {
-	private ArrayList<Room> rooms;
 	private User aUser;
 	
 	//testing purpose constructor
-	public Booking(Room room,User user) {
-		rooms = new ArrayList<Room>();
-		rooms.add(room);
+	public Booking(User user) {
 		this.aUser = user;
 	}
 	
 	public void setBooking(User user,Room room) {
-		if(user.getMaxNumberOfBookedRoom() > user.getNumberOfBookedRoom()) {
+		if(user.canBook()) {
 			if("VIP".equals(user.getMember_type())) {
-				//reward??
 				if(room.checkRoom("VIP")) {
-					//assign to VIP room
 					user.addNumberOfBookedRoom();
-					
+					room.assignRoom("VIP");
 				}else if(room.checkRoom("deluxe")) {
-					//assign to deluxe room
 					user.addNumberOfBookedRoom();
-					
+					room.assignRoom("deluxe");
 				}else if(room.checkRoom("standard")) {
-					//assign to standard room
 					user.addNumberOfBookedRoom();
-					
+					room.assignRoom("standard");
 				}else {
-					//assign to waiting list
+					user.addWaitingList();
 				}
 			}else if("normal".equals(user.getMember_type())) {
-				if(room.checkRoom("deluxe")) {
-					//assign to deluxe room
-					//reward
-					user.addNumberOfBookedRoom();
-				}else {
-					if(user.getExcl_reward()) {
-						if(room.checkRoom("VIP")) {
-							//assign to VIP room
-							user.addNumberOfBookedRoom();
-							user.setExcl_reward(false);
-						}
+				if(user.getExcl_reward()) {
+					if(room.checkRoom("VIP")) {
+						user.addNumberOfBookedRoom();
+						user.setExcl_reward(false);		//->not tested
+						room.assignRoom("VIP");
+					}else if(room.checkRoom("deluxe")) {
+						user.addNumberOfBookedRoom();
+						room.assignRoom("deluxe");
+					}else if(room.checkRoom("standard")){
+						user.addNumberOfBookedRoom();
+						room.assignRoom("standard");
 					}else {
-						if(room.checkRoom("standard")){
-							//assign to normal room
-							user.addNumberOfBookedRoom();
-						}else {
-							//assign to waiting list
-						}
+						user.addWaitingList();
 					}
+				}else {
+					if(room.checkRoom("deluxe")) {
+						user.addNumberOfBookedRoom();
+						room.assignRoom("deluxe");
+					}else if(room.checkRoom("standard")){
+						user.addNumberOfBookedRoom();
+						room.assignRoom("standard");
+					}else {
+						user.addWaitingList();
+					}	
 				}
 			}else if("non".equals(user.getMember_type())) {
 				if(room.checkRoom("standard")) {
-					//assign to standard room
 					user.addNumberOfBookedRoom();
+					room.assignRoom("standard");
 				}else {
-					//assign to waiting list
+					user.addWaitingList();
 				}
 			}else {
-				System.out.println("Reached maximum room.");
+				System.out.println("Unexpected user type.");
+				throw new IllegalArgumentException("Such user type is not expected");
 			}
+		}else {
+			System.out.println("User hits booking limit");
+			throw new IllegalArgumentException("User hits booking limit");
 		}
 	}
 	
