@@ -2,8 +2,6 @@ import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
-
-import org.junit.Ignore;
 import org.junit.Test;
 
 @RunWith(JUnitParamsRunner.class)

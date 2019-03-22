@@ -53,11 +53,7 @@ public class User {
 	}
 	
 	public boolean canBook() {
-		if(numberOfBookedRoom < maxNumberOfBookedRoom) {
-			return true;
-		}else {
-			return false;
-		}
+		return numberOfBookedRoom < maxNumberOfBookedRoom;
 	}
 	
 	public void addWaitingList() {
