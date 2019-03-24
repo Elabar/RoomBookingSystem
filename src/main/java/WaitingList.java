@@ -13,21 +13,21 @@ public class WaitingList {
 	}
 	
 	public void addWaiting(User user) {
-		if("VIP".equals(user.getMember_type())) {
+		if("VIP".equals(user.getMemberType())) {
 			VIP.add(user);
-		}else if("member".equals(user.getMember_type())) {
+		}else if("member".equals(user.getMemberType())) {
 			member.add(user);
-		}else if("normal".equals(user.getMember_type())) {
+		}else if("normal".equals(user.getMemberType())) {
 			normal.add(user);
 		}
 	}
 	
 	public ArrayList<User> getWaiting(){
-		if("VIP".equals(user.getMember_type())) {
+		if("VIP".equals(user.getMemberType())) {
 			return VIP;
-		}else if("member".equals(user.getMember_type())) {
+		}else if("member".equals(user.getMemberType())) {
 			return member;
-		}else if("normal".equals(user.getMember_type())) {
+		}else if("normal".equals(user.getMemberType())) {
 			return normal;
 		}else {
 			return null;
@@ -35,11 +35,11 @@ public class WaitingList {
 	}
 	
 	public void removeWaiting(User user) {
-		if("VIP".equals(user.getMember_type())) {
+		if("VIP".equals(user.getMemberType())) {
 			VIP.remove(user);
-		}else if("member".equals(user.getMember_type())) {
+		}else if("member".equals(user.getMemberType())) {
 			member.remove(user);
-		}else if("normal".equals(user.getMember_type())) {
+		}else if("normal".equals(user.getMemberType())) {
 			normal.remove(user);
 		}
 	}

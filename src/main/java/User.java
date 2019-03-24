@@ -2,34 +2,34 @@ import java.util.ArrayList;
 
 public class User {
 	private String name;
-	private String member_type;
-	private boolean excl_reward;
+	private String memberType;
+	private boolean exclReward;
 	private int maxNumberOfBookedRoom;
 	private int numberOfBookedRoom;
 	private ArrayList<Booking> bookings;
 	private ArrayList<WaitingList> waitingLists;
 	
-	public String getMember_type() {
-		return member_type;
+	public String getMemberType() {
+		return memberType;
 	}
 	
-	public boolean getExcl_reward() {
-		return excl_reward;
+	public boolean getExclReward() {
+		return exclReward;
 	}
 
-	public void setExcl_reward(boolean excl_reward) {
-		this.excl_reward = excl_reward;
+	public void setExcl_reward(boolean exclReward) {
+		this.exclReward = exclReward;
 	}
 
-	public User(String name,String member_type) {
+	public User(String name,String memberType) {
 		this.name = name;
-		this.member_type = member_type;
+		this.memberType = memberType;
 		
-		if("VIP".equals(member_type)) {
+		if("VIP".equals(memberType)) {
 			maxNumberOfBookedRoom = 3;
-		}else if("normal".equals(member_type)) {
+		}else if("normal".equals(memberType)) {
 			maxNumberOfBookedRoom = 2;
-		}else if("non".equals(member_type)) {
+		}else if("non".equals(memberType)) {
 			maxNumberOfBookedRoom = 1;
 		}
 		

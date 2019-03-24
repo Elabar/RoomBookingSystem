@@ -86,9 +86,9 @@ public class TestUser {
 		
 		user.setExcl_reward(excl_reward);
 		if(excl_reward) {
-			assertTrue(user.getExcl_reward());
+			assertTrue(user.getExclReward());
 		}else {
-			assertFalse(user.getExcl_reward());
+			assertFalse(user.getExclReward());
 		}
 	}
 }

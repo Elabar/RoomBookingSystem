@@ -72,8 +72,8 @@ public class TestBooking {
 	public void testSetBooking(boolean canBook,String expectedRoomType,String memberType,boolean reward,boolean VIPAvailability,boolean deluxeAvailability,boolean standardAvailability,boolean isAssign) {
 		User user = mock(User.class);
 		when(user.canBook()).thenReturn(canBook);
-		when(user.getMember_type()).thenReturn(memberType);
-		when(user.getExcl_reward()).thenReturn(reward);
+		when(user.getMemberType()).thenReturn(memberType);
+		when(user.getExclReward()).thenReturn(reward);
 		Room room = mock(Room.class);
 		
 		when(room.checkRoom("VIP")).thenReturn(VIPAvailability);
@@ -99,7 +99,7 @@ public class TestBooking {
 		User user = mock(User.class);
 		Room room = mock(Room.class);
 		when(user.canBook()).thenReturn(true);
-		when(user.getMember_type()).thenReturn("asd");
+		when(user.getMemberType()).thenReturn("asd");
 		Booking SUT = new Booking(user);
 		SUT.setBooking(user, room);
 	}

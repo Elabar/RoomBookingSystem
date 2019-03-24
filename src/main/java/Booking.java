@@ -11,7 +11,7 @@ public class Booking {
 	
 	public void setBooking(User user,Room room) {
 		if(user.canBook()) {
-			if("VIP".equals(user.getMember_type())) {
+			if("VIP".equals(user.getMemberType())) {
 				if(room.checkRoom("VIP")) {
 					user.addNumberOfBookedRoom();
 					room.assignRoom("VIP");
@@ -25,8 +25,8 @@ public class Booking {
 					user.addNumberOfBookedRoom();
 					user.addWaitingList();
 				}
-			}else if("normal".equals(user.getMember_type())) {
-				if(user.getExcl_reward()) {
+			}else if("normal".equals(user.getMemberType())) {
+				if(user.getExclReward()) {
 					if(room.checkRoom("VIP")) {
 						user.addNumberOfBookedRoom();
 						user.setExcl_reward(false);		//->not tested
@@ -53,7 +53,7 @@ public class Booking {
 						user.addWaitingList();
 					}	
 				}
-			}else if("non".equals(user.getMember_type())) {
+			}else if("non".equals(user.getMemberType())) {
 				if(room.checkRoom("standard")) {
 					user.addNumberOfBookedRoom();
 					room.assignRoom("standard");
