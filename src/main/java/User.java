@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class User {
 	private String name;
@@ -20,20 +21,26 @@ public class User {
 	public void setExcl_reward(boolean exclReward) {
 		this.exclReward = exclReward;
 	}
-
-	public User(String name,String memberType) {
+	
+	public User(String name,String memberType,Random random) {
 		this.name = name;
 		this.memberType = memberType;
+		this.numberOfBookedRoom = 0;
+		int randomNum = random.nextInt((10 - 1)) + 1;
+
+		exclReward = randomNum < 5;
 		
 		if("VIP".equals(memberType)) {
 			maxNumberOfBookedRoom = 3;
+			
 		}else if("normal".equals(memberType)) {
 			maxNumberOfBookedRoom = 2;
 		}else if("non".equals(memberType)) {
 			maxNumberOfBookedRoom = 1;
+			exclReward = false;
+		}else {
+			throw new IllegalArgumentException("Unexpected member type");
 		}
-		
-		this.numberOfBookedRoom = 0;
 	}
 
 	public void addNumberOfBookedRoom() {

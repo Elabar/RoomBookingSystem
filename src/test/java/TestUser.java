@@ -3,46 +3,53 @@ import junitparams.Parameters;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 import org.junit.Test;
+import static org.mockito.Mockito.*;
+import java.util.Random;
 
 @RunWith(JUnitParamsRunner.class)
 public class TestUser {
 	
 	private Object[] users() {
-		User user1 = new User("Lee","VIP");
-		User user2 = new User("Angeline","normal");
-		User user3 = new User("Hew Yan","non");
-		User user4 = new User("Wai Kit","VIP");
-		User user5 = new User("Shu Jie","normal");
-		User user6 = new User("Thoong","non");
 		return new Object[] {
-			new Object[] {user1,3},
-			new Object[] {user2,2},
-			new Object[] {user3,1},
-			new Object[] {user4,3},
-			new Object[] {user5,2},
-			new Object[] {user6,1}
+			new Object[] {"name1","VIP",3,3,true},
+			new Object[] {"name2","normal",2,3,true},
+			new Object[] {"name2","non",1,3,false},
+			new Object[] {"name1","VIP",3,7,false},
+			new Object[] {"name2","normal",2,7,false},
+			new Object[] {"name2","non",1,7,false}
 		};
 	}
 	
 	@Test
 	@Parameters(method = "users")
-	public void testUserConstructor(User user,int maxRoom) {
-		assertEquals(user.getMaxNumberOfBookedRoom(),maxRoom);
+	public void testUserConstructor(String name,String memberType,int maxRoom,int randomNum,boolean expectedReward) {
+		Random random = mock(Random.class);
+		when(random.nextInt(anyInt())).thenReturn(randomNum);
+		User SUT = new User(name,memberType,random);
+		assertEquals(SUT.getMaxNumberOfBookedRoom(),maxRoom);
+		assertEquals(expectedReward,SUT.getExclReward());
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testInvalidUserConstructor() {
+		Random random = new Random();
+		User SUT = new User("name1","asd",random);
 	}
 	
 	private Object[] dataForDecrease(){
-		User user1 = new User("Lee","VIP");
-		User user2 = new User("Angeline","normal");
-		User user3 = new User("Hew Yan","non");
 		return new Object[] {
-				new Object[] {user1,3,-3},
-				new Object[] {user2,2,-2},
-				new Object[] {user3,1,-1},
+				new Object[] {3,-3},
+				new Object[] {2,-2},
+				new Object[] {1,-1},
 		};
 	}
+	
+	
 	@Test
 	@Parameters(method = "dataForDecrease")
-	public void testDecreseNumberOfBookedRoom(User user,int numberOfLoop,int numberOfBookedRoom) {
+	public void testDecreseNumberOfBookedRoom(int numberOfLoop,int numberOfBookedRoom) {
+		Random random = new Random();
+		User user = new User("name1","VIP",random);
 		for(int i = 0;i < numberOfLoop;i++) {
 			user.decreaseNumberOfBookedRoom();
 		}
@@ -50,45 +57,43 @@ public class TestUser {
 	}
 	
 	private Object[] dataForIncrease(){
-		User user1 = new User("Lee","VIP");
-		User user2 = new User("Angeline","normal");
-		User user3 = new User("Hew Yan","non");
 		return new Object[] {
-				new Object[] {user1,3,3},
-				new Object[] {user2,2,2},
-				new Object[] {user3,1,1},
+				new Object[] {3,3},
+				new Object[] {2,2},
+				new Object[] {1,1},
 		};
 	}
 	
 	@Test
 	@Parameters(method = "dataForIncrease")
-	public void testAddNumberOfBookedRoom(User user,int numberOfLoop,int numberOfBookedRoom) {
+	public void testAddNumberOfBookedRoom(int numberOfLoop,int numberOfBookedRoom) {
+		Random random = new Random();
+		User user = new User("name1","VIP",random);
 		for(int i = 0;i < numberOfLoop;i++) {
 			user.addNumberOfBookedRoom();
 		}
 		assertEquals(user.getNumberOfBookedRoom(),numberOfBookedRoom);
 	}
 	
-	private Object[] dataForExclReward(){
-		User user1 = new User("Lee","VIP");
-		User user2 = new User("Angeline","normal");
-		User user3 = new User("Hew Yan","non");
-		return new Object[] {
-				new Object[] {user1,true},
-				new Object[] {user2,false},
-				new Object[] {user3,true},
-		};
+	@Test
+	@Parameters
+	public void testCanBook(String memberType,int numberOfBookedRoom,boolean expected) {
+		Random random = new Random();
+		User SUT = new User("name1",memberType,random);
+		for(int i = 0;i < numberOfBookedRoom;i++) {
+			SUT.addNumberOfBookedRoom();
+		}
+		assertEquals(expected,SUT.canBook());
 	}
 	
-	@Test
-	@Parameters(method = "dataForExclReward")
-	public void testExclReward(User user,boolean excl_reward) {
-		
-		user.setExcl_reward(excl_reward);
-		if(excl_reward) {
-			assertTrue(user.getExclReward());
-		}else {
-			assertFalse(user.getExclReward());
-		}
+	private Object[] parametersForTestCanBook() {
+		return new Object[] {
+				new Object[] {"VIP",0,true},
+				new Object[] {"VIP",3,false},
+				new Object[] {"normal",0,true},
+				new Object[] {"normal",2,false},
+				new Object[] {"non",0,true},
+				new Object[] {"non",1,false}
+		};
 	}
 }

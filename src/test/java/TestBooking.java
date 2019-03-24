@@ -92,6 +92,10 @@ public class TestBooking {
 			verify(user,times(1)).addWaitingList();
 			verify(user,times(1)).addNumberOfBookedRoom();
 		}
+		
+		if(isAssign && "normal".equals(user.getMemberType()) && "VIP".equals(expectedRoomType)) {
+			verify(user,times(1)).setExcl_reward(false);
+		}
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
