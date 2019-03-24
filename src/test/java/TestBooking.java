@@ -90,6 +90,7 @@ public class TestBooking {
 			verify(room,times(1)).assignRoom(expectedRoomType);
 		}else {
 			verify(user,times(1)).addWaitingList();
+			verify(user,times(1)).addNumberOfBookedRoom();
 		}
 	}
 	
@@ -110,5 +111,36 @@ public class TestBooking {
 		when(user.canBook()).thenReturn(false);
 		Booking SUT = new Booking(user);
 		SUT.setBooking(user, room);
+	}
+	
+	@Test
+	@Parameters
+	public void testValidCancelBooking(int numberOfBookedRoom,String roomType) {
+		User user = mock(User.class);
+		Room room = mock(Room.class);
+		when(user.getNumberOfBookedRoom()).thenReturn(numberOfBookedRoom);
+		Booking SUT = new Booking(user);
+		SUT.cancelBooking(user, room, roomType);
+		
+		verify(user,times(1)).decreaseNumberOfBookedRoom();
+		verify(room,times(1)).removeReserve(roomType);
+	}
+	
+	private Object[] parametersForTestValidCancelBooking() {
+		return new Object[] {
+			new Object[] {1,"VIP"},
+			new Object[] {1,"deluxe"},
+			new Object[] {1,"standard"}
+		};
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	@Parameters({"VIP","deluxe","standard"})
+	public void testInvalidCancelBooking(String roomType) {
+		User user = mock(User.class);
+		Room room = mock(Room.class);
+		when(user.getNumberOfBookedRoom()).thenReturn(0);
+		Booking SUT = new Booking(user);
+		SUT.cancelBooking(user, room,roomType);
 	}
 }

@@ -15,4 +15,8 @@ public class Room {
 	public void assignRoom(String roomType) {
 		
 	}
+	
+	public void removeReserve(String roomType) {
+		
+	}
 }

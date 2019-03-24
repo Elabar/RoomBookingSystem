@@ -22,6 +22,7 @@ public class Booking {
 					user.addNumberOfBookedRoom();
 					room.assignRoom("standard");
 				}else {
+					user.addNumberOfBookedRoom();
 					user.addWaitingList();
 				}
 			}else if("normal".equals(user.getMember_type())) {
@@ -37,6 +38,7 @@ public class Booking {
 						user.addNumberOfBookedRoom();
 						room.assignRoom("standard");
 					}else {
+						user.addNumberOfBookedRoom();
 						user.addWaitingList();
 					}
 				}else {
@@ -47,6 +49,7 @@ public class Booking {
 						user.addNumberOfBookedRoom();
 						room.assignRoom("standard");
 					}else {
+						user.addNumberOfBookedRoom();
 						user.addWaitingList();
 					}	
 				}
@@ -55,6 +58,7 @@ public class Booking {
 					user.addNumberOfBookedRoom();
 					room.assignRoom("standard");
 				}else {
+					user.addNumberOfBookedRoom();
 					user.addWaitingList();
 				}
 			}else {
@@ -67,11 +71,14 @@ public class Booking {
 		}
 	}
 	
-	public void cancelBooking(User user,Room room) {
+	//assuming that cancelBooking only cancel user's reservation but not removing user from waiting list
+	public void cancelBooking(User user,Room room,String roomType) {
 		if(user.getNumberOfBookedRoom() > 0) {
 			user.decreaseNumberOfBookedRoom();
+			room.removeReserve(roomType);
 		}else {
 			System.out.println("No booked room.");
+			throw new IllegalArgumentException("User do not have booked room");
 		}
 	}
 }
