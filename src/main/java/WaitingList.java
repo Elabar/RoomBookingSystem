@@ -6,6 +6,23 @@ public class WaitingList {
 	private ArrayList<User> non;
 	private User user;
 	
+	public int getNumOfUserInList() {
+		if("VIP".equals(user.getMemberType())) {
+			return VIP.size();
+		}else if("normal".equals(user.getMemberType())) {
+			return normal.size();
+		}else{
+			return non.size();
+		}
+		/*
+		 * Section below is not needed since it has filtered by
+		 * the construtor
+		else {
+			throw new IllegalArgumentException("Unexpected member type");
+		}
+		*/
+	}
+	
 	public WaitingList(User user) {
 		this.user = user;
 		if("VIP".equals(user.getMemberType())) {
@@ -27,23 +44,23 @@ public class WaitingList {
 			VIP.add(user);
 		}else if("normal".equals(user.getMemberType())) {
 			normal.add(user);
-		}else if("non".equals(user.getMemberType())) {
+		}else{
 			non.add(user);
-		}else {
+		}
+		/*
+		 * Section below is not needed since it has filtered by
+		 * the construtor
+		else {
 			throw new IllegalArgumentException("Unexpected member type");
 		}
+		*/
 	}
 	
-	public ArrayList<User> getWaiting(){
-		if("VIP".equals(user.getMemberType())) {
-			return VIP;
-		}else if("normal".equals(user.getMemberType())) {
-			return normal;
-		}else if("non".equals(user.getMemberType())) {
-			return non;
-		}else {
-			return null;
-		}
+	//Since user will have many waiting list
+	//It means one waiting list will have one user only
+	//So we just need to return the only one user
+	public User getWaiting(){
+		return user;
 	}
 	
 	public void removeWaiting() {
@@ -51,10 +68,15 @@ public class WaitingList {
 			VIP.remove(user);
 		}else if("normal".equals(user.getMemberType())) {
 			normal.remove(user);
-		}else if("non".equals(user.getMemberType())) {
-			non.remove(user);
 		}else {
+			non.remove(user);
+		}
+		/*
+		 * Section below is not needed since it has filtered by
+		 * the construtor
+		else {
 			throw new IllegalArgumentException("Unexpected member type");
 		}
+		*/
 	}
 }
