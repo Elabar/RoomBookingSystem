@@ -1,3 +1,4 @@
+package utar.edu.my;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.runner.RunWith;

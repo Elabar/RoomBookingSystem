@@ -1,3 +1,5 @@
+package utar.edu.my;
+
 public class Booking {
 	private User aUser;
 	

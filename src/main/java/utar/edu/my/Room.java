@@ -1,3 +1,4 @@
+package utar.edu.my;
 
 public class Room {
 	private int vip;

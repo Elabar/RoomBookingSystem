@@ -1,3 +1,4 @@
+package utar.edu.my;
 import java.util.ArrayList;
 
 public class WaitingList {
