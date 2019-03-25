@@ -18,7 +18,7 @@ public class User {
 		return exclReward;
 	}
 
-	public void setExcl_reward(boolean exclReward) {
+	public void setExclReward(boolean exclReward) {
 		this.exclReward = exclReward;
 	}
 	

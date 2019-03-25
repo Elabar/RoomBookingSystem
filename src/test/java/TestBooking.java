@@ -94,7 +94,7 @@ public class TestBooking {
 		}
 		
 		if(isAssign && "normal".equals(user.getMemberType()) && "VIP".equals(expectedRoomType)) {
-			verify(user,times(1)).setExcl_reward(false);
+			verify(user,times(1)).setExclReward(false);
 		}
 	}
 	

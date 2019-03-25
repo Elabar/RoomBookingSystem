@@ -29,7 +29,7 @@ public class Booking {
 				if(user.getExclReward()) {
 					if(room.checkRoom("VIP")) {
 						user.addNumberOfBookedRoom();
-						user.setExcl_reward(false);
+						user.setExclReward(false);
 						room.assignRoom("VIP");
 					}else if(room.checkRoom("deluxe")) {
 						user.addNumberOfBookedRoom();
