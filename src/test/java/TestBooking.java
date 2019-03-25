@@ -85,12 +85,11 @@ public class TestBooking {
 		
 		Booking SUT = new Booking(user);
 		SUT.setBooking(user, room);
+		verify(user,times(1)).addNumberOfBookedRoom();
 		if(isAssign) {
-			verify(user,times(1)).addNumberOfBookedRoom();
 			verify(room,times(1)).assignRoom(expectedRoomType);
 		}else {
-			verify(user,times(1)).addWaitingList();
-			verify(user,times(1)).addNumberOfBookedRoom();
+			verify(user,times(1)).addWaitingList(anyObject());	
 		}
 		
 		if(isAssign && "normal".equals(user.getMemberType()) && "VIP".equals(expectedRoomType)) {

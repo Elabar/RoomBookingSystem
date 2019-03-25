@@ -23,7 +23,8 @@ public class Booking {
 					room.assignRoom("standard");
 				}else {
 					user.addNumberOfBookedRoom();
-					user.addWaitingList();
+					WaitingList wl = new WaitingList(user);
+					user.addWaitingList(wl);
 				}
 			}else if("normal".equals(user.getMemberType())) {
 				if(user.getExclReward()) {
@@ -39,7 +40,8 @@ public class Booking {
 						room.assignRoom("standard");
 					}else {
 						user.addNumberOfBookedRoom();
-						user.addWaitingList();
+						WaitingList wl = new WaitingList(user);
+						user.addWaitingList(wl);
 					}
 				}else {
 					if(room.checkRoom("deluxe")) {
@@ -50,7 +52,8 @@ public class Booking {
 						room.assignRoom("standard");
 					}else {
 						user.addNumberOfBookedRoom();
-						user.addWaitingList();
+						WaitingList wl = new WaitingList(user);
+						user.addWaitingList(wl);
 					}	
 				}
 			}else if("non".equals(user.getMemberType())) {
@@ -59,7 +62,8 @@ public class Booking {
 					room.assignRoom("standard");
 				}else {
 					user.addNumberOfBookedRoom();
-					user.addWaitingList();
+					WaitingList wl = new WaitingList(user);
+					user.addWaitingList(wl);
 				}
 			}else {
 				System.out.println("Unexpected user type.");

@@ -63,7 +63,11 @@ public class User {
 		return numberOfBookedRoom < maxNumberOfBookedRoom;
 	}
 	
-	public void addWaitingList() {
-		//to be implement
+	public void addWaitingList(WaitingList wl) {
+		waitingLists.add(wl);
+	}
+	
+	public void addBooking(Booking booking) {
+		bookings.add(booking);
 	}
 }
