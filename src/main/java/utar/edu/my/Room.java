@@ -1,25 +1,21 @@
 package utar.edu.my;
 
+
 public class Room {
-	private int vip;
-	private int deluxe;
-	private int standard;
+	private static int vip;
+	private static int deluxe;
+	private static int standard;
 	
 	public boolean checkRoom(String roomType) {
+		//to be implment
 		return true;
 	}
 	
 	public void assignRoom(String roomType) {
-		/*
-		 * Assuming that the variable above is indicating
-		 * max number, we should decrease the number by 1
-		 */
+		//to be implment
 	}
 	
-	public void removeReserve(String roomType) {
-		/*
-		 * Assuming that the variable above is indicating
-		 * max number, we should increase the number by 1
-		 */
+	public void resignRoom(String roomType) {
+		//to be implment
 	}
 }
