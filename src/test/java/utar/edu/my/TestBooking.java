@@ -133,9 +133,7 @@ public class TestBooking {
 	 * We only need to use one member type to test for 2 and 3 times.
 	 */
 	@Test
-	@Parameters({"vip,2,vip","vip,3,vip",
-		"normal,2,deluxe","normal,3,deluxe",
-		"non,2,standard","non,3,standard"})
+	@Parameters({"vip,3,vip","normal,3,deluxe","non,3,standard"})
 	public void testSetBookingValidMultipleTimes(String memberType,int numberOfBooking,String expectedRoomType) {
 		User user = mock(User.class);
 		when(user.canBook()).thenReturn(true);
