@@ -226,7 +226,6 @@ public class TestBooking {
 	 * value to the printer class
 	 */
 	@Test
-
 	public void testPrintInfo() {
 		User user = mock(User.class);
 		when(user.canBook()).thenReturn(true);

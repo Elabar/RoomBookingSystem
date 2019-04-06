@@ -30,14 +30,14 @@ true,deluxe,normal,false,false,true,true,true
 true,deluxe,normal,false,false,true,false,true
 true,standard,normal,false,false,false,true,true
 true,null,normal,false,false,false,false,false
-true,standard,non,true,true,true,true,true
-true,null,non,true,true,true,false,false
-true,standard,non,true,true,false,true,true
-true,null,non,true,true,false,false,false
-true,standard,non,true,false,true,true,true
-true,null,non,true,false,true,false,false
-true,standard,non,true,false,false,true,true
-true,null,non,true,false,false,false,false
+true,standard,non,false,true,true,true,true
+true,null,non,false,true,true,false,false
+true,standard,non,false,true,false,true,true
+true,null,non,false,true,false,false,false
+true,standard,non,false,false,true,true,true
+true,null,non,false,false,true,false,false
+true,standard,non,false,false,false,true,true
+true,null,non,false,false,false,false,false
 true,standard,non,false,true,true,true,true
 true,null,non,false,true,true,false,false
 true,standard,non,false,true,false, true,true
