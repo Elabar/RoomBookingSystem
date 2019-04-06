@@ -7,65 +7,40 @@ import junitparams.Parameters;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 @RunWith(JUnitParamsRunner.class)
 public class TestBooking {
+	private Scanner inputDataScanner;
+
 	//room_type=vip/deluxe/standard
 	//member_type=vip/normal/non
 	private Object[] dataForSetBooking(){
-		return new Object[] {
-		  //----------------------------vip---------------------------
-		  //new Object[] {canBook,expectedRoom,memberType,reward,vipRoom, deluxeRoom,standardRoom,isAssign,
-			new Object[] {true,		"vip",		"vip",		true,	true,		true,		 true,true},
-			new Object[] {true,		"vip",		"vip",		true,	true,		true,		 false,true},
-			new Object[] {true,		"vip",		"vip",		true,	true,		false,		 true,true},
-			new Object[] {true,		"vip",		"vip",		true,	true,		false,		 false,true},
-			new Object[] {true,		"deluxe",	"vip",		true,	false,		true,		 true,true},
-			new Object[] {true,		"deluxe",	"vip",		true,	false,		true,		 false,true},
-			new Object[] {true,		"standard",	"vip",		true,	false,		false,		 true,true},
-			new Object[] {true,			null,	"vip",		true,	false,		false,		 false,false},
-			new Object[] {true,		"vip",		"vip",		false,	true,		true,		 true,true},
-			new Object[] {true,		"vip",		"vip",		false,	true,		true,		 false,true},
-			new Object[] {true,		"vip",		"vip",		false,	true,		false, 		 true,true},
-			new Object[] {true,		"vip",		"vip",		false,	true,		false,		 false,true},
-			new Object[] {true,		"deluxe",	"vip",		false,	false,		true,		 true,true},
-			new Object[] {true,		"deluxe",	"vip",		false,	false,		true,		 false,true},
-			new Object[] {true,		"standard",	"vip",		false,	false,		false,		 true,true},
-			new Object[] {true,			null,	"vip",		false,	false,		false,		 false,false},
-		  //----------------------------normal---------------------------
-			new Object[] {true,		"vip",		"normal",	true,	true,		true,		 true,true},
-			new Object[] {true,		"vip",		"normal",	true,	true,		true,		 false,true},
-			new Object[] {true,		"vip",		"normal",	true,	true,		false,		 true,true},
-			new Object[] {true,		"vip",		"normal",	true,	true,		false,		 false,true},
-			new Object[] {true,		"deluxe",	"normal",	true,	false,		true,		 true,true},
-			new Object[] {true,		"deluxe",	"normal",	true,	false,		true,		 false,true},
-			new Object[] {true,		"standard",	"normal",	true,	false,		false,		 true,true},
-			new Object[] {true,			null,	"normal",	true,	false,		false,		 false,false},
-			new Object[] {true,		"deluxe",		"normal",	false,	true,	true,		 true,true},
-			new Object[] {true,		"deluxe",		"normal",	false,	true,	true,		 false,true},
-			new Object[] {true,		"standard",		"normal",	false,	true,	false, 		 true,true},
-			new Object[] {true,			null,		"normal",	false,	true,	false, 		 false,false},
-			new Object[] {true,		"deluxe",	"normal",	false,	false,		true,		 true,true},
-			new Object[] {true,		"deluxe",	"normal",	false,	false,		true,		 false,true},
-			new Object[] {true,		"standard",	"normal",	false,	false,		false,		 true,true},
-			new Object[] {true,			null,	"normal",	false,	false,		false,		 false,false},
-		  //----------------------------non---------------------------
-			new Object[] {true,		"standard",		"non",	true,	true,		true,		 true,true},
-			new Object[] {true,			null,		"non",	true,	true,		true,		 false,false},
-			new Object[] {true,		"standard",		"non",	true,	true,		false,		 true,true},
-			new Object[] {true,			null,		"non",	true,	true,		false,		 false,false},
-			new Object[] {true,		"standard",	"non",		true,	false,		true,		 true,true},
-			new Object[] {true,			null,	"non",		true,	false,		true,		 false,false},
-			new Object[] {true,		"standard",	"non",		true,	false,		false,		 true,true},
-			new Object[] {true,			null,	"non",		true,	false,		false,		 false,false},
-			new Object[] {true,		"standard",		"non",	false,	true,	true,		 true,true},
-			new Object[] {true,			null,		"non",	false,	true,	true,		 false,false},
-			new Object[] {true,		"standard",		"non",	false,	true,	false, 		 true,true},
-			new Object[] {true,			null,		"non",	false,	true,	false, 		 false,false},
-			new Object[] {true,		"standard",	"non",		false,	false,		true,		 true,true},
-			new Object[] {true,			null,	"non",		false,	false,		true,		 false,false},
-			new Object[] {true,		"standard",	"non",		false,	false,		false,		 true,true},
-			new Object[] {true,			null,	"non",		false,	false,		false,		 false,false},
-		};
+		File file = new File("TestValue.txt");
+		try {
+			this.inputDataScanner = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ArrayList<Object> params = new ArrayList<Object>();
+		while(inputDataScanner.hasNextLine()) {
+			String[] text = inputDataScanner.nextLine().split(",");
+			ArrayList<Object> param =  new ArrayList<Object>();
+			param.add(String.valueOf(text[0].trim()));
+			param.add(String.valueOf(text[1].trim()));
+			param.add(String.valueOf(text[2].trim()));
+			param.add(String.valueOf(text[3].trim()));
+			param.add(String.valueOf(text[4].trim()));
+			param.add(String.valueOf(text[5].trim()));
+			param.add(String.valueOf(text[6].trim()));
+			param.add(String.valueOf(text[7].trim()));
+			params.add(param.toArray());
+		}
+		return params.toArray();
 	}
 	
 	/*

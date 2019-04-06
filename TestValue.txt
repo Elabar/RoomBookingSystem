@@ -1,0 +1,48 @@
+true,vip,vip,true,true,true,true,true
+true,vip,vip,true,true,true,false,true
+true,vip,vip,true,true,false,true,true
+true,vip,vip,true,true,false,false,true
+true,deluxe,vip,true,false,true,true,true
+true,deluxe,vip,true,false,true,false,true
+true,standard,vip,true,false,false,true,true
+true,null,vip,true,false,false,false,false
+true,vip,vip,false,true,true,true,true
+true,vip,vip,false,true,true,false,true
+true,vip,vip,false,true,false, true,true
+true,vip,vip,false,true,false,false,true
+true,deluxe,vip,false,false,true,true,true
+true,deluxe,vip,false,false,true,false,true
+true,standard,vip,false,false,false,true,true
+true,null,vip,false,false,false,false,false
+true,vip,normal,true,true,true,true,true
+true,vip,normal,true,true,true,false,true
+true,vip,normal,true,true,false,true,true
+true,vip,normal,true,true,false,false,true
+true,deluxe,normal,true,false,true,true,true
+true,deluxe,normal,true,false,true,false,true
+true,standard,normal,true,false,false,true,true
+true,null,normal,true,false,false,false,false
+true,deluxe,normal,false,true,true,true,true
+true,deluxe,normal,false,true,true,false,true
+true,standard,normal,false,true,false, true,true
+true,null,normal,false,true,false, false,false
+true,deluxe,normal,false,false,true,true,true
+true,deluxe,normal,false,false,true,false,true
+true,standard,normal,false,false,false,true,true
+true,null,normal,false,false,false,false,false
+true,standard,non,true,true,true,true,true
+true,null,non,true,true,true,false,false
+true,standard,non,true,true,false,true,true
+true,null,non,true,true,false,false,false
+true,standard,non,true,false,true,true,true
+true,null,non,true,false,true,false,false
+true,standard,non,true,false,false,true,true
+true,null,non,true,false,false,false,false
+true,standard,non,false,true,true,true,true
+true,null,non,false,true,true,false,false
+true,standard,non,false,true,false, true,true
+true,null,non,false,true,false, false,false
+true,standard,non,false,false,true,true,true
+true,null,non,false,false,true,false,false
+true,standard,non,false,false,false,true,true
+true,null,non,false,false,false,false,false
