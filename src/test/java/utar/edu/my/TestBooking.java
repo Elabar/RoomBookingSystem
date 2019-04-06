@@ -145,7 +145,7 @@ public class TestBooking {
 	 * in another method
 	 */
 	@Test
-	@Parameters({"vip,3,vip","normal,3,deluxe","non,3,standard"})
+	@Parameters({"vip,3,vip"})
 	public void testSetBookingValidMultipleTimes(String memberType,int numberOfBooking,String expectedRoomType) {
 		User user = mock(User.class);
 		when(user.canBook()).thenReturn(true);
@@ -225,7 +225,7 @@ public class TestBooking {
 	 * This will focus on removing waiting list
 	 */
 	@Test
-	@Parameters({"vip,vip","deluxe,normal","standard,non"})
+	@Parameters({"vip,vip"})
 	public void testCancelBookingWaitingList(String roomType,String memberType) {
 		User user = mock(User.class);
 		when(user.canBook()).thenReturn(true);
@@ -251,16 +251,16 @@ public class TestBooking {
 	 * value to the printer class
 	 */
 	@Test
-	@Parameters({"vip,vip","deluxe,normal","standard,non"})
-	public void testPrintInfo(String roomType,String memberType) {
+
+	public void testPrintInfo() {
 		User user = mock(User.class);
 		when(user.canBook()).thenReturn(true);
-		when(user.getMemberType()).thenReturn(memberType);
+		when(user.getMemberType()).thenReturn("vip");
 		when(user.getReward()).thenReturn(false);
 		when(user.getName()).thenReturn("test");
 		
 		Room room = mock(Room.class);
-		when(room.checkRoom(roomType)).thenReturn(true);
+		when(room.checkRoom("vip")).thenReturn(true);
 		
 		WaitingList wl = mock(WaitingList.class);
 		
@@ -271,6 +271,6 @@ public class TestBooking {
 		
 		SUT.printBooking(user, printer);
 		
-		verify(printer).printInfo("test", memberType, roomType);
+		verify(printer).printInfo("test", "vip", "vip");
 	}
 }

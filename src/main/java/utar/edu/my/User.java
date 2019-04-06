@@ -17,7 +17,7 @@ public class User {
 		this.numberOfBookedRoom = 0;
 		int randomNum = random.nextInt((10 - 1)) + 1;
 
-		reward = randomNum < 5;
+		reward = randomNum <= 4;
 		if("vip".equals(memberType)) {
 			maxNumberOfBookRoom = 3;
 		}else if("normal".equals(memberType)) {

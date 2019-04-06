@@ -17,9 +17,9 @@ public class TestUser {
 			new Object[] {"name2","normal",2,3,true},
 			new Object[] {"name2","non",1,3,false},
 			//reward = false
-			new Object[] {"name1","vip",3,7,false},
-			new Object[] {"name2","normal",2,7,false},
-			new Object[] {"name2","non",1,7,false}
+			new Object[] {"name1","vip",3,4,false},
+			new Object[] {"name2","normal",2,4,false},
+			new Object[] {"name2","non",1,4,false}
 		};
 	}
 	
