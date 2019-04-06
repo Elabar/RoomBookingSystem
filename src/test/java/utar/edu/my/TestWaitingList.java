@@ -18,7 +18,7 @@ public class TestWaitingList {
 	
 	@Test
 	public void testRemoveUser() {
-User user = mock(User.class);
+		User user = mock(User.class);
 		
 		WaitingList SUT = new WaitingList();
 		

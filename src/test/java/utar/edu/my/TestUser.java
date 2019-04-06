@@ -128,8 +128,8 @@ public class TestUser {
 	}
 	
 	/*
-	 * We test true and false here to make sure the constructor
-	 * did not disturb the setter for reward
+	 * We test true and false here to make sure the reward
+	 * is not set by constructor but the setter
 	 */
 	@Test
 	@Parameters({"true","false"})

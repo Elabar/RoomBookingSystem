@@ -68,6 +68,9 @@ public class TestBooking {
 		};
 	}
 	
+	/*
+	 * This will ONLY test user try to book 1 room at a time
+	 */
 	@Test
 	@Parameters(method = "dataForSetBooking")
 	public void testSetBookingCanBook(boolean canBook,String expectedRoomType,String memberType,boolean reward,boolean vipAvailability,boolean deluxeAvailability,boolean standardAvailability,boolean isAssign) {
@@ -99,6 +102,7 @@ public class TestBooking {
 		}
 	}
 	
+	//This will test the invalid member type
 	@Test(expected = IllegalArgumentException.class)
 	public void testSetBookingInvalidMember() {
 		User user = mock(User.class);
@@ -113,6 +117,10 @@ public class TestBooking {
 		SUT.setBooking(user,1,wl,room);
 	}
 	
+	/*
+	 * This will test the user who try to book room when
+	 * he/she has hit the limit of his/her member limitation
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testSetBookingCantBook() {
 		User user = mock(User.class);
@@ -130,7 +138,11 @@ public class TestBooking {
 	 * We have tested all of the combinations condition for booking 1 room
 	 * and ensure that the logic is correct. Now we only need to verify when 
 	 * we try to book multiple room, the system actually book multiple times.
-	 * We only need to use one member type to test for 2 and 3 times.
+	 * We will use boundary analysis to test this. So all of the combinations 
+	 * are 0,1,3,4 where 0 and 4 are the invalid combinations and 1 and 3 are 
+	 * the valid combinations. As we have tested the 1 combination, we are going
+	 * to test book 3 times in this test ONLY. Invalid combinations will be tested
+	 * in another method
 	 */
 	@Test
 	@Parameters({"vip,3,vip","normal,3,deluxe","non,3,standard"})
@@ -150,16 +162,15 @@ public class TestBooking {
 		Booking SUT = new Booking();
 		SUT.setBooking(user,numberOfBooking,wl,room);
 		
-		//make sure the record is recording the correct room type and waiting list
+		//make sure the record is recording the correct room type
 		for(int i = 0;i < numberOfBooking;i++) {
 			assertEquals(expectedRoomType,SUT.getRooms().get(i));
 		}
 	}
 	
 	/*
-	 * Now we want to ensure the system only allow 1/2/3 of booking times
-	 * in a single booking session. If we look at the coding, the member 
-	 * type will affect this test, so we can hard code it.
+	 * We will test the invalid book times (0 and 4) in this method
+	 * Using boundary analysis
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	@Parameters({"4","0"})
@@ -180,9 +191,15 @@ public class TestBooking {
 		SUT.setBooking(user,numberOfBooking,wl,room);
 	}
 	
+	/*
+	 * To check all of the if else branch in cancel booking
+	 * We will need to separate into two tests. One is 
+	 * removing rooms and another one is removing waiting
+	 * list. We test the remove room here. 
+	 */
 	@Test
 	@Parameters({"vip,vip","deluxe,normal","standard,non"})
-	public void testRemoveBookingRooms(String roomType,String memberType) {
+	public void testCancelBookingRooms(String roomType,String memberType) {
 		User user = mock(User.class);
 		when(user.canBook()).thenReturn(true);
 		when(user.getMemberType()).thenReturn(memberType);
@@ -203,9 +220,13 @@ public class TestBooking {
 		verify(wl,never()).removeUser(user);
 	}
 	
+	/*
+	 * Another test for cancelBooking to test all of the branches
+	 * This will focus on removing waiting list
+	 */
 	@Test
 	@Parameters({"vip,vip","deluxe,normal","standard,non"})
-	public void testRemoveBookingWaitingList(String roomType,String memberType) {
+	public void testCancelBookingWaitingList(String roomType,String memberType) {
 		User user = mock(User.class);
 		when(user.canBook()).thenReturn(true);
 		when(user.getMemberType()).thenReturn(memberType);
@@ -225,6 +246,10 @@ public class TestBooking {
 		verify(wl).removeUser(user);
 	}
 	
+	/*
+	 * This will test if the print info will pass the correct
+	 * value to the printer class
+	 */
 	@Test
 	@Parameters({"vip,vip","deluxe,normal","standard,non"})
 	public void testPrintInfo(String roomType,String memberType) {
